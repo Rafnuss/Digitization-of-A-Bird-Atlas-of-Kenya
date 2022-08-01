@@ -9,65 +9,58 @@ Raphaël Nussbaumer<sup>1,[![](https://figshare.com/ndownloader/files/8439032/pr
 
 ---
 
-[![DOI:10.15468/vqb2zs](https://zenodo.org/badge/DOI/10.15468/vqb2zs.svg)](https://doi.org/10.15468/vqb2zs)
-<div data-badge-popover="right" data-badge-type="1" data-doi="10.15468/vqb2zs" data-condensed="true" data-hide-no-mentions="true" class="altmetric-embed"></div>
+[![DOI:10.15468/2ga3wk](https://zenodo.org/badge/DOI/10.15468/2ga3wk.svg)](https://doi.org/10.15468/2ga3wk)
+<div data-badge-popover="right" data-badge-type="1" data-doi="10.15468/2ga3wk" data-condensed="true" data-hide-no-mentions="true" class="altmetric-embed"></div>
 
 
 [![licensebuttons by-nc](https://licensebuttons.net/l/by-nc/3.0/88x31.png)](https://creativecommons.org/licenses/by-nc/4.0)
 
-**Keywords:** africa, kenya, bird, atlas, breeding, 
+**Keywords:** africa; kenya; bird; atlas; breeding; nest; presence; distribution; long-term; change; map; quarter degree grid cell; Occurrence; Observation
 
 ## Description
+This dataset contains the digitized bird atlas data from "A Bird Atlas of Kenya" (Lewis & Pomeroy, 1989) (https://doi.org/10.1201/9781315136264).
 
-From 1 May 2020 to 15 September 2021, entomologist Mike Clifton (MK), assisted by James Apolloh (JA), conducted a standardized butterfly survey at the A Rocha Kenya Conservation Centre.  They followed a 1km transect three times a day, counting all individual butterflies encountered. The resulting dataset consists of 12 631 entries over 905 surveys, counted over a total of 492 hours. A total of 45 908 individual butterflies were counted consisting of 129 taxons (114 species, 14 genus, 2 families). 
+The data consists of the breeding code (presence, probable or confirmed) for all species and quarter degree grid cells in Kenya for two periods: pre-atlas (up to 1970) and during the atlas (1970-1984).
 
-**Geographical coverage:** The same unique transect covering the different habitats found on the A Rocha Kenya property [39.986, 39.990, -3.379, -3.376].
+**Geographical coverage:** Covering all of the Republic of Kenya, using quarter degree grid cells (QDGC) (or quarter square degree) (Larsen et al. 2009). On this geographic system, Kenya covers 228 squares.
 
-**Taxonomic coverage:** All butterflies defined as the superfamily *Papilionoidea*. Most records were identified at the species level (11 549), while some were left at the genus (1 051) or family (31) level. A total 129 taxons were recorded, including 114 species, 14 genus and 2 families.
+**Taxonomic coverage:** All 1065 bird species (*aves sp.*) recorded in Kenya by 1985. These comprise the 1053 mentioned by Britton (1980), 13 added since then (EABR; Scopus 9:53-54, 110-111) and one deleted (Parker 1984). The book seems to follow the taxonomy adopted by Britton (1980). While the data preserves the original common and scientific names (as `originalNameUsage`), the data original taxonomy is matched to the GBIF Backbone Taxonomy.
 
-**Temporal coverage:** 2020-05-01 to 2021-09-15
+**Temporal coverage:** 1900-01-01 / 1984-12-31
+
 
 ## Sampling Methods
 
+See Lewis & Pomeroy (1989) for information on sampling of the original data. See step description below for the digitisation of the data.
+
 ### Study Extent
 
-Surveys were performed on 328 days between 2020-05-01 and 2021-09-15 (65% day coverage). On each day, one (5 instances), two (69) or three (254) surveys were conducted starting at 10am, 1pm and 3pm (EDT). Each survey generally lasted 25 to 40 minutes (mean:34; min:18; max:68).
+See Lewis & Pomeroy (1989) for information on the study extent of the original data. Here, we describe only the digitisation of the data. We follow as closely as possible the extent of the data provided in the book. (1) We report all species mentioned in the book and followed their taxonomy (even for species which have since been split or lumped). (2) We report the spatial information at the grid square level providing the original QDGC name (locality), the square as polygon (footprintWKT) and centre of the square (decimalLatitude, decimalLongitude). (3) We report the atlas code (presence, probable and confirmed) as given in the book at the square level. Note that we are not able to provide the atlas code for the pre-atlas period if the post-atlas period has a greater or equal atlas code (data not provided in the book).
 
-The transect covers all habitats of A Rocha Kenya Conservation Centre, starting from the main building (3°22'41.5"S 39°59'19.8"E), then going through the nature trail (3°22'33.8"S 39°59'15.7"E) and along the beach path (3°22'44.0"S 39°59'21.3"E). The exact transect can be found [on the github repository](https://github.com/A-Rocha-Kenya/Butterfly-Survey-at-A-Rocha-Kenya-Conservation-Centre/blob/main/data/transect.geojson).
+### Quality Control	
 
-### Sampling Description
+See Lewis & Pomeroy (1989) for information on the quality control of the original data. We describe here only the digitisation of the data. We considered the book as the reference, and thus manually checked that the digitised data matches the maps of the book. To perform this validation, we generated the same maps as the book based on the digitised data and visually compared them to the original map to check for discrepancy. In the absence of map in the book, we checked the square code provided in the book. Additionally, we used the gbif data-validator before the upload (https://www.gbif.org/tools/data-validator).
+
+### Step Description
+
+1. The base spreadsheet was recovered by Colin Jackson and contains most of the data from the book with some modifications, losses and additions. The source of this document remains unknown.
+2. We removed all data dating from after the atlas project.
+3. We converted the data from a text description to a standardised column (date-atlas code).
+4. We changed the species name to the name used in the book (both common and scientific names).
+5. We added the data from the missing species (e.g., species without a map).
+6. We reverted back any species split/lumped/removed since then.
+7. Finally, we manually checked the data with the book (see quality control)
+8. We exported the data in Darwin core standard with the code: https://github.com/Rafnuss/Digitization-of-A-Bird-Atlas-of-Kenya
 
 ![image](https://user-images.githubusercontent.com/7571260/161981966-ce19656c-b712-493c-a053-a767e3fe49ef.png)
 
 
-Each survey was conducted by MC with the assistance of AJ on some occasions. The transect was followed on foot and all butterflies encountered from the path were identified, counted and recorded on a paper datasheet. The use of nets was occasionally employed to facilitate identification. In addition to the start and end times, MK also recorded weather and any special comments. The data was then entered on a computer by MK following guidelines by CJ and technical assistance from RN. 
-
-### Quality Control
-
-While entering the data on the computer, MK was able to check for typos on species and count. 
-
-A standardized verification of the entire dataset was performed by RN. This includes:
-- Ensuring a realistic date, start time and end time as well as duration.
-- Eliminating surveys which were abandoned (generally caused by extreme weather).
-- Validating species name with the function `name_backbone()`of the `rgbif` package. 
-The R script employed to perform these steps is [`export_gbif.Rmd`](https://github.com/A-Rocha-Kenya/Butterfly-Survey-at-A-Rocha-Kenya-Conservation-Centre/blob/main/analysis/export_gbif.Rmd). The raw data before validation can be found in the spreadsheet [`Butterfly_mwamba_survey.xlsx`](https://github.com/A-Rocha-Kenya/Butterfly-Survey-at-A-Rocha-Kenya-Conservation-Centre/blob/main/data/Butterfly_mwamba_survey.xlsx).
-
-### Step Description
-
+## Bibliographic Citations
+Lewis, Adrian, and Derek Pomeroy. 1989. A Bird Atlas of Kenya. edited by A. A. Balkema. Rotterdam: CRC Press. https://doi.org/10.1201/9781315136264
+Britton, P. L. 1980. Birds of East Africa: Their Habitat, Status and Distribution. Nairobi: East Africa Natural History Society.
+Larsen, R., T. Holmern, S. D. Prager, H. Maliti, and E. Røskaft. 2009. “Using the Extended Quarter Degree Grid Cell System to Unify Mapping and Sharing of Biodiversity Data.” African Journal of Ecology 47(3):382–92. https://doi.org/10.1111/j.1365-2028.2008.00997.x
 
 
 ## How to cite?
 
-> Clifton M, Apolloh J, Nussbaumer R, Jackson C (2022): Butterfly Survey At A Rocha Kenya Conservation Centre. v1. A Rocha Kenya. Dataset/Samplingevent. http://ipt.museums.or.ke/ipt/resource?r=butterfly_survey_at_mwamba&amp;v=1.0
-
-## External links
-
-
-
-## Log
-- 26/01/2021: RN downloaded the data from Google drive and transformed the old data format into the new format. He deleted the data with the old format on google drive. The new consolidated data is in the spreadsheet `Butterfly_mwamba_survey.xlsx`. A backup is present in the Archive folder
-
-## 
-https://docs.gbif.org/georeferencing-best-practices/1.0/en/#grids
-
-https://www.gbif.org/tools/data-validator
+> Nussbaumer R, Shema S, Kennedy S, Jackson C (2022). A Bird Atlas of Kenya. Version 1.1. A Rocha Kenya. Occurrence dataset https://doi.org/10.15468/2ga3wk accessed via GBIF.org on 2022-08-01.

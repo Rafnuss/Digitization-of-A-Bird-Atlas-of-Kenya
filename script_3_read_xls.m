@@ -5,7 +5,7 @@ load('data/data_fix.mat')
 flname = readtable('data/filename.xlsx', 'TextType', 'string');
 
 %% Load exisiting data
-old_atlas = readtable("../data_version_2022_RN/A Bird Atlas of Kenya_v5.xlsx", 'TextType', 'string');
+old_atlas = readtable("data/data_version_2022_RN/A Bird Atlas of Kenya_v5.xlsx", 'TextType', 'string');
 
 % Add breeding code
 old_atlas.pre_1970(ismissing(old_atlas.pre_1970))="none";

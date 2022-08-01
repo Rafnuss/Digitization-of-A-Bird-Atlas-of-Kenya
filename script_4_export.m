@@ -1,6 +1,6 @@
 % Export to GBUF format
 
-old_atlas = readtable("../data_version_2022_RN/A Bird Atlas of Kenya_v5.xlsx", 'TextType', 'string');
+old_atlas = readtable("data/data_version_2022_RN/A Bird Atlas of Kenya_v5.xlsx", 'TextType', 'string');
 
 
 %% Create a  Matching taxonomy

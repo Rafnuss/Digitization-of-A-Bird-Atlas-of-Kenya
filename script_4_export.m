@@ -1,6 +1,6 @@
 % Export to GBUF format
 
-old_atlas = readtable("data/data_version_2022_RN/A Bird Atlas of Kenya_v5.xlsx", 'TextType', 'string');
+old_atlas = readtable("data/A Bird Atlas of Kenya_v5.xlsx", 'TextType', 'string');
 
 
 %% Create a  Matching taxonomy
@@ -69,7 +69,7 @@ end
 
 
 % Read file
-sp_old_atlas = readtable('sp_list_gbif.xlsx','TextType', 'string');
+sp_old_atlas = readtable('data/sp_list_gbif.xlsx','TextType', 'string');
 
 
 %%  Constructure table
@@ -77,10 +77,12 @@ sp_old_atlas = readtable('sp_list_gbif.xlsx','TextType', 'string');
 % restructure to get date seperately
 tmp1 = old_atlas(:,1:5);
 tmp1.atlas = old_atlas.pre_1970;
-tmp1.eventDate(:) = "1900/1970";
+tmp1.eventDateLabel(:) = "1900/1970";
+tmp1.eventDate(:) = "1900-01-01T00:00:00/1970-01-01T00:00:00";
 tmp2 = old_atlas(:,1:5);
 tmp2.atlas = old_atlas.x1970_1984;
-tmp2.eventDate(:) = "1970/1984";
+tmp2.eventDateLabel(:) = "1970/1984";
+tmp2.eventDate(:) = "1970-01-01T00:00:00/1984-01-01T00:00:00";
 data = [tmp1;tmp2];
 clear tmp1 tmp2
 
@@ -92,6 +94,7 @@ data(ismissing(data.atlas),:)=[];
 data.basisOfRecord(:) = "Occurrence";
 % data.reproductiveConditionProperty = data.atlas;
 data.occurrenceRemarks(:) = data.atlas;
+data.occurrenceStatus(:) = "present";
 
 % Taxonomy
 data.kingdom(:) = "animalia";
@@ -120,7 +123,7 @@ data = removevars(data,["SEQ", "ScientificName", "CommonName", "atlas"]);
 
 % Geo-
 tmp=struct();
-tmp1 = jsondecode(fileread('../Rcode/grid.geojson'));
+tmp1 = jsondecode(fileread('data/grid.geojson'));
 for i_f=1:numel(tmp1.features)
     tmp2 = tmp1.features(i_f).geometry.coordinates(:,:,1);
     tmp3 = tmp1.features(i_f).geometry.coordinates(:,:,2);
@@ -131,10 +134,11 @@ for i_f=1:numel(tmp1.features)
 end
 tg = struct2table(tmp);
 
-data.continent(:) = "Africa";
-data.countryCode(:) = "KE";
-data.country(:) = "Kenya";
+% data.continent(:) = "Africa";
+% data.countryCode(:) = "KE";
+% data.country(:) = "Kenya";
 data.geodeticDatum(:) = "WGS84";
+data.footprintSRS(:) = "WGS84";
 data.decimalLatitude(:) = nan;
 data.decimalLongitude(:) = nan; 
 data.verbatimCoordinateSystem(:) = "Quarter Degree Squares (QDS), see DOI:10.1111/j.1365-2028.2008.00997.x";
@@ -147,19 +151,19 @@ for i_l=1:height(tg)
     data.footprintWKT(id) = "POLYGON (("+str(1:end-2)+"))";
     data.locality(id) = tg.SqN(i_l) + tg.SqL(i_l);
     distgc = distance(tg.lon(i_l),tg.lat(i_l),tg.lon(i_l)+.25,tg.lat(i_l)+.25);
-    data.coordinateUncertaintyInMeters(id) = deg2km(distgc)*1000;
+    data.coordinateUncertaintyInMeters(id) = round(deg2km(distgc)*1000);
 end
 data = removevars(data,["SqN", "SqL"]);
 
-% 
-data.occurrenceID = data.eventDate +"_"+data.taxonID+"_"+data.locality;
-%data.occurrenceID = data.eventDate +"_"+data.CommonName+"_"+data.SqN+"_"+data.SqL;
+%
+data.occurrenceID = data.eventDateLabel +"_"+data.taxonID+"_"+data.locality;
+%data.occurrenceID = data.eventDateLabel +"_"+data.CommonName+"_"+data.SqN+"_"+data.SqL;
 data=sortrows(data,'occurrenceID');
 data([false; data.occurrenceID(1:end-1)==data.occurrenceID(2:end)],:)
 numel(data.occurrenceID)==numel(unique(data.occurrenceID))
 
-
-
+data = removevars(data,["eventDateLabel"]);
+%% 
 writetable(data,"export_gbif/occurrence.csv")
 
 

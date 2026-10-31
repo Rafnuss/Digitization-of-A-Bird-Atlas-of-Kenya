@@ -66,7 +66,7 @@ xline(g.x); yline(g.y)
 
 % Create the table of the grid 
 tmp=struct();
-tmp1 = jsondecode(fileread('../Rcode/grid.geojson'));
+tmp1 = jsondecode(fileread('data/raw/grid.geojson'));
 for i_f=1:numel(tmp1.features)
     tmp2 = tmp1.features(i_f).geometry.coordinates(:,:,1);
     tmp3 = tmp1.features(i_f).geometry.coordinates(:,:,2);
@@ -94,7 +94,7 @@ g.sqN(r) = tg.SqN(c);
 
 
 %% Save grid
-save('data/grid','g')
+save('data/intermediate/grid','g')
 
 %% Export data for app
 gX=g.X(g.mask); 

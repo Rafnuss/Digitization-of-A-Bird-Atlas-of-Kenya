@@ -1,3 +1,4 @@
+% Atlas workbook and labeling files -> interactive review and completed grid records.
 load('data/intermediate/grid')
 load('data/data_fix.mat')
 

@@ -1,3 +1,4 @@
+% Scanned atlas pages and grid -> extracted maps and labeling data.
 % load the grid
 load('data/intermediate/grid')
 load('data/data_fix')

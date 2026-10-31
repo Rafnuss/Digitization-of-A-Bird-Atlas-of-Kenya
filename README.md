@@ -105,7 +105,7 @@ Turner, D.A. 1985. On the claimed occurrence of the Spike-heeled Lark Chersomane
 
 The atlas workbook, page index and grid are in `data/raw/`. The generated grid is in `data/intermediate/`, while the labeling app keeps its working `data_fix.mat` and `data_label*.mat` files directly in `data/`. The existing occurrence export is in `export/gbif/`.
 
-Run the MATLAB digitization scripts from the project root after `addpath('scripts')`: `step_01_create_grid`, `step_02_read_atlas_maps`, and `step_03_review_digitization`. Some historical sections refer to earlier input files or saved sessions that are not included.
+Run the MATLAB digitization scripts from the project root with `eval(fileread('scripts/01_create_grid.m'))`, changing the filename for `02_read_atlas_maps.m` and `03_review_digitization.m`. Number-prefixed scripts can also run section by section in the editor. Some historical sections refer to earlier input files or saved sessions that are not included.
 
 ## How to cite?
 

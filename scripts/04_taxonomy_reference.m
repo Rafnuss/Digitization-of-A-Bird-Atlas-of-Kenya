@@ -51,3 +51,13 @@ reference.taxonRank(group) = "";
 reference.scientificNameAuthorship(group) = "";
 writetable(reference,'data/intermediate/atlas_taxonomy_reference.csv');
 disp(groupsummary(reference,'reference_source'))
+
+% Export the pinned AviList fields consumed by KenyaAtlasComparison --------
+file = 'data/raw/taxonomy/AviList-v2026-20Oct2026-extended-version.xlsx';
+opts = detectImportOptions(file, Sheet='AviList v2026', VariableNamingRule='preserve');
+opts.SelectedVariableNames = {'AVIBASE ID','SCIENTIFIC NAME','ENGLISH NAME: AVILIST','RANK','#','ORDER','FAMILY','IUCN RED LIST CATEGORY','BIRDLIFE DATAZONE URL','SPECIES CODE CORNELL LAB'};
+opts = setvartype(opts, opts.SelectedVariableNames, 'string');
+avilist = readtable(file, opts);
+avilist = avilist(:, {'AVIBASE ID','SCIENTIFIC NAME','ENGLISH NAME: AVILIST','RANK','#','ORDER','FAMILY','IUCN RED LIST CATEGORY','BIRDLIFE DATAZONE URL','SPECIES CODE CORNELL LAB'});
+avilist.Properties.VariableNames = {'avibase_id','scientific_name','common_name','rank','avilist_sort','order','family','iucn','birdlife_url','species_code'};
+writetable(avilist, 'export/comparison/avilist_taxa.csv');

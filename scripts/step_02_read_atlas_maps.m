@@ -1,5 +1,5 @@
 % load the grid
-load('data/grid')
+load('data/intermediate/grid')
 load('data/data_fix')
 
 % Find all page to read

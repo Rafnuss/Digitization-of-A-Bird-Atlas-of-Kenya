@@ -1,8 +1,8 @@
-load('data/grid')
+load('data/intermediate/grid')
 load('data/data_fix.mat')
 
 %% Read filename
-flname = readtable('data/filename.xlsx', 'TextType', 'string');
+flname = readtable('data/raw/filename.xlsx', 'TextType', 'string');
 
 %% Load exisiting data
 old_atlas = readtable("data/data_version_2022_RN/A Bird Atlas of Kenya_v5.xlsx", 'TextType', 'string');
@@ -92,7 +92,7 @@ load('data/data_label_v1_20220705-182715.mat')
 
 % Create the table of the grid 
 grid=struct();
-tmp = jsondecode(fileread('../Rcode/grid.geojson'));
+tmp = jsondecode(fileread('data/raw/grid.geojson'));
 for i_f=1:numel(tmp.features)
     tmp2 = tmp.features(i_f).geometry.coordinates(:,:,1);
     tmp3 = tmp.features(i_f).geometry.coordinates(:,:,2);

@@ -101,6 +101,12 @@ Taylor, P.B. 1982. Storm-petrels off the Kenya coast. *Scopus: Journal of East A
 
 Turner, D.A. 1985. On the claimed occurrence of the Spike-heeled Lark Chersomanes albofasciata in Kenya. *Scopus: Journal of East African Ornithology* 9: 142
 
+## Project files and digitization
+
+The atlas workbook, page index and grid are in `data/raw/`. The generated grid is in `data/intermediate/`, while the labeling app keeps its working `data_fix.mat` and `data_label*.mat` files directly in `data/`. The existing occurrence export is in `export/gbif/`.
+
+Run the MATLAB digitization scripts from the project root after `addpath('scripts')`: `step_01_create_grid`, `step_02_read_atlas_maps`, and `step_03_review_digitization`. Some historical sections refer to earlier input files or saved sessions that are not included.
+
 ## How to cite?
 
 > Nussbaumer R, Shema S, Kennedy S, Jackson C (2022). A Bird Atlas of Kenya. Version 1.1. A Rocha Kenya. Occurrence dataset https://doi.org/10.15468/2ga3wk accessed via GBIF.org on 2022-08-01.

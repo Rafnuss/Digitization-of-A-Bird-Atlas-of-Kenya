@@ -1,0 +1,18 @@
+seq,status,notes,new_avibase_id,new_scientific_name
+14,rejected,Rejected in existing GBIF dataset taxonomic coverage; attributed to Fisher and Hunter (2016).,,
+63,rejected,Rejected in existing GBIF dataset taxonomic coverage; attributed to Fisher and Hunter (2016).,,
+253,rejected,Rejected in existing GBIF dataset taxonomic coverage; attributed to Fisher and Hunter (2016).,,
+286,rejected,Rejected in existing GBIF dataset taxonomic coverage; attributed to Fisher and Hunter (2016).,,
+293,rejected,Rejected in existing GBIF dataset taxonomic coverage; attributed to Fisher and Hunter (2016).,,
+294,rejected,Rejected in existing GBIF dataset taxonomic coverage; attributed to Fisher and Hunter (2016).,,
+338,rejected,Rejected in existing GBIF dataset taxonomic coverage; attributed to Fisher and Hunter (2016).,,
+476,rejected,Rejected in existing GBIF dataset taxonomic coverage; attributed to Fisher and Hunter (2016).,,
+664,rejected,Rejected in existing GBIF dataset taxonomic coverage; no supporting citation is recorded there.,,
+894,rejected,Rejected in existing GBIF dataset taxonomic coverage; attributed to Fisher and Hunter (2016).,,
+935,rejected,Rejected in existing GBIF dataset taxonomic coverage; attributed to Fisher and Hunter (2016).,,
+1006,rejected,Rejected in existing GBIF dataset taxonomic coverage; attributed to Fisher and Hunter (2016).,,
+1026,rejected,Rejected in existing GBIF dataset taxonomic coverage; attributed to Fisher and Hunter (2016).,,
+7,reidentified,Reidentified as Thin-billed Prion (Fanshawe et al. 1992).,avibase-0D885A80,Pachyptila belcheri
+13,uncertain,Identification is uncertain in existing GBIF dataset taxonomic coverage (Hunter 2019; Taylor 1982).,,
+299,reidentified,"Reidentified as Lesser Black-backed Gull, following the existing GBIF dataset taxonomic coverage.",avibase-2D52E3A5,Larus fuscus
+537,uncertain,Identification is uncertain in existing GBIF dataset taxonomic coverage (Turner 1985).,,

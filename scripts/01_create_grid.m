@@ -1,3 +1,4 @@
+% Template images and grid GeoJSON -> grid and labeling template MAT files.
 % Load template map to match
 template = double(rgb2gray(imread("template.png")));
 g.szt = size(template);

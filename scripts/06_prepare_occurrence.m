@@ -25,6 +25,16 @@ late = late(~ismissing(late.atlasCode),:);
 late.eventDate(:) = "1970-01-01T00:00:00/1984-01-01T00:00:00";
 late.period(:) = "1970/1984";
 data = [early;late];
+
+% Apply documented review decisions to the GBIF occurrence export ----------
+review_options = detectImportOptions('data/curated/atlas_record_review.csv');
+review_options = setvartype(review_options,review_options.VariableNames,'string');
+review = readtable('data/curated/atlas_record_review.csv',review_options);
+[has_review,review_idx] = ismember(data.SEQ,review.seq);
+rejected = false(height(data),1);
+rejected(has_review) = ismember(review.status(review_idx(has_review)),["rejected","uncertain"]);
+data = data(~rejected,:);
+[has_review,review_idx] = ismember(data.SEQ,review.seq);
 [found,idx] = ismember(data.SEQ,taxonomy.SEQ);assert(all(found));
 assert(all(data.atlasScientificName == taxonomy.scientific_name(idx)));
 [found,ref_idx] = ismember(data.SEQ,reference.SEQ);assert(all(found));
@@ -57,12 +67,20 @@ data.taxonID = taxonomy.avibase_id(idx);
 data.taxonConceptID = taxonomy.col_id(idx);
 use_col = taxonomy.col_publish(idx) == "true" & ~ismissing(data.taxonConceptID);
 data.taxonConceptID(~use_col) = "";
+reidentified = false(height(data),1);
+reidentified(has_review) = review.status(review_idx(has_review)) == "reidentified";
+data.scientificName(reidentified) = review.new_scientific_name(review_idx(reidentified));
+data.taxonID(reidentified) = review.new_avibase_id(review_idx(reidentified));
+data.taxonConceptID(reidentified) = "";
+data.taxonRank(reidentified) = "species";
+data.scientificNameAuthorship(reidentified) = "";
 data.identificationRemarks = strings(height(data),1);
-data.identificationRemarks(fallback) = "Atlas name retained because the selected Avibase concept does not have one unambiguous scientific name in the crosswalk; the concept may include multiple taxa.";
-noted = taxonomy.review_status(idx) == "parent_fallback" | taxonomy.review_status(idx) == "reviewed" | taxonomy.review_status(idx) == "kenyan_match";
+data.identificationRemarks(fallback & ~reidentified) = "Atlas name retained because the selected Avibase concept does not have one unambiguous scientific name in the crosswalk; the concept may include multiple taxa.";
+noted = (taxonomy.review_status(idx) == "parent_fallback" | taxonomy.review_status(idx) == "reviewed" | taxonomy.review_status(idx) == "kenyan_match") & ~reidentified;
 data.identificationRemarks(noted) = strtrim(data.identificationRemarks(noted) + " " + taxonomy.notes(idx(noted)));
-data.identificationRemarks = strtrim("Atlas SEQ: " + data.SEQ + ". Atlas scientific name: " + data.atlasScientificName + ". " + data.identificationRemarks);
-has_col = data.taxonConceptID ~= "";
+data.identificationRemarks(has_review) = strtrim(data.identificationRemarks(has_review) + " " + review.notes(review_idx(has_review)));
+data.identificationRemarks = strtrim("Atlas SEQ: " + data.SEQ + ". " + data.identificationRemarks);
+has_col = data.taxonConceptID ~= "" & ~reidentified;
 data.identificationRemarks(has_col) = data.identificationRemarks(has_col) + " Catalogue of Life: " + taxonomy.col_notes(idx(has_col));
 
 % Attach the original quarter-degree grid ---------------------------------

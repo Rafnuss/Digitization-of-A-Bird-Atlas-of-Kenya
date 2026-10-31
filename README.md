@@ -26,31 +26,7 @@ The data records breeding codes (presence, probable or confirmed) by atlas taxon
 
 **Taxonomic coverage:** The atlas has 1,065 numbered bird taxa, plus two unnumbered entries for Shoebill and Taita Thrush. The book appears to follow Britton (1980). The source names are retained and linked to Avibase concepts in a curated mapping; see [Atlas taxonomy and Avibase](#atlas-taxonomy-and-avibase).
 
-Since the atlas was published, some records have been reassessed or their taxonomy has changed:
-
-- #7 Broad-billed Prion (*Pachyptila vittata*) Reindentified (Fanshawe et al., 1992)
-- #13 Matsudaira's Storm Petrel (*Oceanodroma matsudairae*) Uncertain (Hunter, 2019) (Taylor, 1982)
-- #14 Red-tailed Tropicbird (*Phaeton rubricauda*) Rejected (Fisher & Hunter, 2016)
-- #63 Ruddy Shelduck (*Tadorna ferruginea*) Rejected (Fisher & Hunter, 2016)
-- #144 Barbary Falcon (*Falco pelegrinoides*) Lumped with 143. Peregrine Falcon (*Falco peregrinus*)
-- #178 Kenya Crested Guineafowl (*Guttera pucherani*) Lumped with 179. Crested Guineafowl (*Guttera pucherani*)
-- #253 Asiatic Dowitcher (*Limnodromus semipalmatus*) Rejected (Fisher & Hunter, 2016)
-- #286 Brown Skua (*Catharacta antarctica*) Rejected (Fisher & Hunter, 2016)
-- #293 Mediterranean Gull (*Larus melanocephalus*) Rejected (Fisher & Hunter, 2016)
-- #294 Little Gull (*Larus minutus*) Rejected (Fisher & Hunter, 2016)
-- #299 Herring Gull (*Larus argentatus*) Reidentified as 298. Lesser Black-backed Gull (*Larus fuscus*)
-- #338 Black-billed Wood Dove (*Turtur abyssinicus*) Rejected (Fisher & Hunter, 2016)
-- #476 Pale-billed Hornbill (*Tockus pallidirostris*) Rejected (Fisher & Hunter, 2016)
-- #498 Usambiro Barbet (*Trachyphonus usambiro*) Lumped with 497. D'Arnaud's Barbet (*Trachyphonus darnaudii*)
-- #506 Kilimanjaro Honeyguide (*Indicator narokensis*) Lumped with 505. Pallid honeyguide (*Indicator meliphilus*)
-- #537 Spike-heeled Lark (*Chersomanes albofasciata*) Uncertain (Turner, 1985)
-- #664 Forest Robin (*Stiphrornis erythrothorax*) Rejected
-- #894 Ashy Starling (*Cosmopsarus unicolor*) Rejected (Fisher & Hunter, 2016)
-- #935 Blue-throated Brown Sunbird (*Nectarinia cyanolaema*) Rejected (Fisher & Hunter, 2016)
-- #1006 Chestnut-breasted Negrofinch (*Nigrita bicolor*) Rejected (Fisher & Hunter, 2016)
-- #1026 Cordon-bleu (*Uraeginthus angolensis*) Rejected (Fisher & Hunter, 2016)
-- #0a Shoebill (*Balaeniceps rex*), unnumbered atlas entry assigned a project code
-
+The original workbook and comparison export retain the atlas entries. The GBIF occurrence export excludes rejected and uncertain entries and applies documented reidentifications; see the [taxonomy and record review](docs/taxonomy.md) for the affected taxa, sources and remaining questions.
 
 **Temporal coverage:** 1900-01-01 / 1984-12-31
 
@@ -61,7 +37,7 @@ See Lewis & Pomeroy (1989) for information on sampling of the original data. See
 
 ### Study Extent
 
-See Lewis & Pomeroy (1989) for information on the study extent of the original data. Here, we describe only the digitisation of the data. We follow as closely as possible the extent of the data provided in the book. (1) We report all species mentioned in the book and followed their taxonomy (even for species which have since been split or lumped). (2) We report the spatial information at the grid square level providing the original QDGC name (locality), the square as polygon (footprintWKT) and centre of the square (decimalLatitude, decimalLongitude). (3) We report the atlas code (presence, probable and confirmed) as given in the book at the square level. Note that we are not able to provide the atlas code for the pre-atlas period if the post-atlas period has a greater or equal atlas code (data not provided in the book).
+See Lewis & Pomeroy (1989) for information on the study extent of the original data. Here, we describe only the digitisation of the data. We follow as closely as possible the extent of the data provided in the book. (1) The source workbook retains the species and taxonomy described in the book, including taxa since split or lumped; the GBIF export applies the documented record review. (2) We report the spatial information at the grid square level providing the original QDGC name (locality), the square as polygon (footprintWKT) and centre of the square (decimalLatitude, decimalLongitude). (3) We report the atlas code (presence, probable and confirmed) as given in the book at the square level. Note that we are not able to provide the atlas code for the pre-atlas period if the post-atlas period has a greater or equal atlas code (data not provided in the book).
 
 ### Quality Control	
 
@@ -70,7 +46,7 @@ See Lewis & Pomeroy (1989) for information on the quality control of the origina
 ### Step Description
 
 1. The base spreadsheet was recovered by Colin Jackson and contains most of the data from the book with some modifications, losses and additions. The source of this document remains unknown.
-2. We removed all data dating from after the atlas project.
+2. The occurrence export selects records from the pre-1970 and 1970–1984 periods; the source workbook also retains post-1984 records.
 3. We converted the data from a text description to a standardised column (date-atlas code).
 4. We changed the species name to the name used in the book (both common and scientific names).
 5. We added the data from the missing species (e.g., species without a map).
@@ -103,6 +79,7 @@ Turner, D.A. 1985. On the claimed occurrence of the Spike-heeled Lark Chersomane
 
 - [Atlas workbook](data/raw/A%20Bird%20Atlas%20of%20Kenya_v5.xlsx): the digitized source data, including the atlas names, grid squares and period codes. Earlier versions are available in Git history.
 - [Atlas taxonomy](data/curated/atlas_taxonomy.csv): the curated mapping from each atlas `SEQ` to an Avibase ID, name and supporting notes.
+- [Record review](data/curated/atlas_record_review.csv): decisions on rejected, uncertain and reidentified atlas entries.
 - [Comparison CSV](export/comparison/atlas_records.csv): the atlas records joined to the Avibase mapping, ready for comparison work. See its [export notes](export/comparison/README.md).
 - [Occurrence CSV](export/gbif/occurrence.csv): the Darwin Core occurrence export for GBIF, derived from the atlas periods and taxonomy mapping.
 - `data/raw/taxonomy/` contains the supplied taxonomy reference workbooks; `data/intermediate/` contains generated working files. Book scans and the labeling app remain in their original locations.
@@ -115,7 +92,7 @@ Read `seq` as text: `0a` identifies Shoebill and `0b` Taita Thrush, two unnumber
 
 ### Atlas taxonomy and Avibase
 
-The [curated taxonomy table](data/curated/atlas_taxonomy.csv) contains one row per atlas entry, preserving its original common and scientific names alongside its selected Avibase ID and name. The mapping started with historical scientific-name matches to AviList and used modern aliases, book scans, Avibase and Kenyan checklist evidence for difficult cases. Some entries use a more specific Kenyan taxon; others use a broader parent where a precise match is uncertain. The `match_basis`, `review_status`, `source` and `notes` fields document the basis and limitations. Name matches do not by themselves establish that historical and modern taxon concepts are identical; consult the notes before interpreting splits or combining records. See [taxonomy documentation](docs/taxonomy.md) and [qualified decisions](docs/taxonomy_decisions.md).
+The [curated taxonomy table](data/curated/atlas_taxonomy.csv) contains one row per atlas entry, preserving its original common and scientific names alongside its selected Avibase ID and name. The mapping started with historical scientific-name matches to AviList and used modern aliases, book scans, Avibase and Kenyan checklist evidence for difficult cases. Some entries use a more specific Kenyan taxon; others use a broader parent where a precise match is uncertain. The `match_basis`, `review_status`, `source` and `notes` fields document the basis and limitations. Name matches do not by themselves establish that historical and modern taxon concepts are identical; consult the notes before interpreting splits or combining records. See the [taxonomy and record review](docs/taxonomy.md).
 
 ### Regenerating exports
 

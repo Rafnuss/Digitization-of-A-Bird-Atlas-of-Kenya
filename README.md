@@ -101,11 +101,42 @@ Taylor, P.B. 1982. Storm-petrels off the Kenya coast. *Scopus: Journal of East A
 
 Turner, D.A. 1985. On the claimed occurrence of the Spike-heeled Lark Chersomanes albofasciata in Kenya. *Scopus: Journal of East African Ornithology* 9: 142
 
-## Project files and digitization
+## Project files and workflow
 
-The atlas workbook, page index and grid are in `data/raw/`. The generated grid is in `data/intermediate/`, while the labeling app keeps its working `data_fix.mat` and `data_label*.mat` files directly in `data/`. The existing occurrence export is in `export/gbif/`.
+The book scans and existing labeling app remain in `pages_png/`, `extract/`, `templateCode/` and the project root, where the app expects them. The source atlas workbook, page index and grid are in `data/raw/`; the manually curated historical SEQ-to-Avibase mapping is in `data/curated/`. The SEQ column uses `0a` for Shoebill and `0b` for Taita Thrush; they were both 0 in the earlier workbook. Read SEQ as text. `data/intermediate/` holds generated grid and GBIF matching results. The labeling app expects its working `data_fix.mat` and `data_label*.mat` files directly in `data/`. The occurrence export is in `export/gbif/`.
 
-Run the MATLAB digitization scripts from the project root with `eval(fileread('scripts/01_create_grid.m'))`, changing the filename for `02_read_atlas_maps.m` and `03_review_digitization.m`. Number-prefixed scripts can also run section by section in the editor. Some historical sections refer to earlier input files or saved sessions that are not included.
+The numbered filenames identify the scripts; they are not a single pipeline that must be run from beginning to end. Run the commands below from the project root. MATLAB's `run` cannot execute a filename beginning with a number, so use `eval(fileread(...))`, or run sections interactively in the editor.
+
+### Current exports
+
+The current inputs are the completed atlas workbook in `data/raw/` and the curated `data/curated/atlas_taxonomy.csv`. Read SEQ as text. Neither export requires rerunning the historical digitization or contacting GBIF.
+
+For the GBIF occurrence CSV, first prepare the classification reference, then build the occurrence export:
+
+```matlab
+eval(fileread('scripts/04_taxonomy_reference.m'))  % Reference workbooks and Avibase IDs -> atlas_taxonomy_reference.csv
+eval(fileread('scripts/06_prepare_occurrence.m'))  % Atlas, curated taxonomy and reference -> occurrence CSV
+```
+
+For the comparison CSV, run only:
+
+```matlab
+eval(fileread('scripts/07_export_comparison.m'))  % Atlas and Avibase IDs -> export/comparison/atlas_records.csv
+```
+
+The comparison export retains all source rows and the three atlas periods; its `seq` field is text. See [comparison export notes](export/comparison/README.md).
+
+### Catalogue of Life matching
+
+Step 05 optionally queries GBIF’s Catalogue of Life matching API and saves proposals to `data/intermediate/atlas_col_name_matches.csv`. It does not modify the curated table or occurrence export. The Avibase and Catalogue of Life decisions are maintained together in `data/curated/atlas_taxonomy.csv`; see [taxonomic decisions](docs/taxonomy_decisions.md) for qualified matches and review `col_status` and `col_notes` before using them. The API call requires network access.
+
+### Historical digitization and review
+
+`scripts/01_create_grid.m`, `02_read_atlas_maps.m` and `03_review_digitization.m` document the original grid preparation, map extraction and interactive labeling work. They are not required for the exports above. Step 03 combines interactive review with exporting completed grid records and references an earlier workbook and a saved labeling session that are not included; the completed workbook also involved manual curation. These scripts therefore do not currently reproduce the final workbook end to end.
+
+### GBIF publishing mapping
+
+Map the occurrence CSV's `scientificName`, `taxonID`, `vernacularName` and `identificationRemarks` to their Darwin Core fields. `scientificName` carries the selected Avibase/AviList name where available, `taxonID` carries the Avibase ID, and `vernacularName` carries the atlas common name. `taxonConceptID` contains the Catalogue of Life ID selected in the curated table where `col_publish` is true; match status and scope are documented in that table. For 38 atlas taxa that ID is a broad genus fallback; GBIF can interpret the record at genus level or flag a mismatch with the supplied scientific name. The original atlas scientific name is present in both `verbatimIdentification` and `identificationRemarks`. If the publishing tool supports `verbatimIdentification`, map it; if it does not, ensure `identificationRemarks` is mapped so the original name is retained. Check the generated archive or validator output to confirm the mappings before publishing.
 
 ## How to cite?
 

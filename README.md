@@ -20,38 +20,36 @@ Raphaël Nussbaumer<sup>1,[![](https://figshare.com/ndownloader/files/8439032/pr
 ## Description
 This dataset contains the digitized bird atlas data from "A Bird Atlas of Kenya" (Lewis & Pomeroy, 1989) (https://doi.org/10.1201/9781315136264).
 
-The data consists of the breeding code (presence, probable or confirmed) for all species and quarter degree grid cells in Kenya for two periods: pre-atlas (up to 1970) and during the atlas (1970-1984).
+The data records breeding codes (presence, probable or confirmed) by atlas taxon and quarter-degree grid cell. The occurrence export covers the pre-atlas and 1970–1984 atlas periods. The comparison CSV also retains the source workbook’s post-1984 column.
 
 **Geographical coverage:** Covering all of the Republic of Kenya, using quarter degree grid cells (QDGC) (or quarter square degree) (Larsen et al. 2009). On this geographic system, Kenya covers 228 squares.
 
-**Taxonomic coverage:** All 1065 bird species (*aves sp.*) recorded in Kenya by 1985. These comprise the 1053 mentioned by Britton (1980), 13 added since then (EABR; Scopus 9:53-54, 110-111) and one deleted (Parker, 1984).
-The book seems to follow the taxonomy adopted by Britton (1980). While the data preserves the original common and scientific names (as `originalNameUsage`), the `scientificName` uses the GBIF Backbone Taxonomy.
+**Taxonomic coverage:** The atlas has 1,065 numbered bird taxa, plus two unnumbered entries for Shoebill and Taita Thrush. The book appears to follow Britton (1980). The source names are retained and linked to Avibase concepts in a curated mapping; see [Atlas taxonomy and Avibase](#atlas-taxonomy-and-avibase).
 
-Since the atlas has been published, several species have been changes:
+Since the atlas was published, some records have been reassessed or their taxonomy has changed:
 
-- 7. Broad-billed Prion (*Pachyptila vittata*) Reindentified (Fanshawe et al., 1992)
-- 13. Matsudaira's Storm Petrel (*Oceanodroma matsudairae*) Uncertain (Hunter, 2019) (Taylor, 1982)
-- 14. Red-tailed Tropicbird (*Phaeton rubricauda*) Rejected (Fisher & Hunter, 2016)
-- 63. Ruddy Shelduck (*Tadorna ferruginea*) Rejected (Fisher & Hunter, 2016)
-- 144. Barbary Falcon (*Falco pelegrinoides*) Lumped with 143. Peregrine Falcon (*Falco peregrinus*)
-- 178. Kenya Crested Guineafowl (*Guttera pucherani*) Lumped with 179. Crested Guineafowl (*Guttera pucherani*)
-- 253. Asiatic Dowitcher (*Limnodromus semipalmatus*) Rejected (Fisher & Hunter, 2016)
-- 286. Brown Skua (*Catharacta antarctica*) Rejected (Fisher & Hunter, 2016)
-- 293. Mediterranean Gull (*Larus melanocephalus*) Rejected (Fisher & Hunter, 2016)
-- 294. Little Gull (*Larus minutus*) Rejected (Fisher & Hunter, 2016)
-- 299. Herring Gull (*Larus argentatus*) Reidentified as 298. Lesser Black-backed Gull (*Larus fuscus*)
-- 338. Black-billed Wood Dove (*Turtur abyssinicus*) Rejected (Fisher & Hunter, 2016)
-- 476. Pale-billed Hornbill (*Tockus pallidirostris*) Rejected (Fisher & Hunter, 2016)
-- 498. Usambiro Barbet (*Trachyphonus usambiro*) Lumped with 497. D'Arnaud's Barbet (*Trachyphonus darnaudii*)
-- 506. Kilimanjaro Honeyguide (*Indicator narokensis*) Lumped with 505. Pallid honeyguide (*Indicator meliphilus*)
-- 537. Spike-heeled Lark (*Chersomanes albofasciata*) Uncertain (Turner, 1985)
-- 664. Forest Robin (*Stiphrornis erythrothorax*) Rejected
-- 894. Ashy Starling (*Cosmopsarus unicolor*) Rejected (Fisher & Hunter, 2016)
-- 935. Blue-throated Brown Sunbird (*Nectarinia cyanolaema*) Rejected (Fisher & Hunter, 2016)
-- 1006. Chestnut-breasted Negrofinch (*Nigrita bicolor*) Rejected (Fisher & Hunter, 2016)
-- 1026. Cordon-bleu (*Uraeginthus angolensis*) Rejected (Fisher & Hunter, 2016)
-- . Taita Thrush (*Turdus (olivaceus) helleri*)
-- . Shoebill (*Balaeniceps rex*)
+- #7 Broad-billed Prion (*Pachyptila vittata*) Reindentified (Fanshawe et al., 1992)
+- #13 Matsudaira's Storm Petrel (*Oceanodroma matsudairae*) Uncertain (Hunter, 2019) (Taylor, 1982)
+- #14 Red-tailed Tropicbird (*Phaeton rubricauda*) Rejected (Fisher & Hunter, 2016)
+- #63 Ruddy Shelduck (*Tadorna ferruginea*) Rejected (Fisher & Hunter, 2016)
+- #144 Barbary Falcon (*Falco pelegrinoides*) Lumped with 143. Peregrine Falcon (*Falco peregrinus*)
+- #178 Kenya Crested Guineafowl (*Guttera pucherani*) Lumped with 179. Crested Guineafowl (*Guttera pucherani*)
+- #253 Asiatic Dowitcher (*Limnodromus semipalmatus*) Rejected (Fisher & Hunter, 2016)
+- #286 Brown Skua (*Catharacta antarctica*) Rejected (Fisher & Hunter, 2016)
+- #293 Mediterranean Gull (*Larus melanocephalus*) Rejected (Fisher & Hunter, 2016)
+- #294 Little Gull (*Larus minutus*) Rejected (Fisher & Hunter, 2016)
+- #299 Herring Gull (*Larus argentatus*) Reidentified as 298. Lesser Black-backed Gull (*Larus fuscus*)
+- #338 Black-billed Wood Dove (*Turtur abyssinicus*) Rejected (Fisher & Hunter, 2016)
+- #476 Pale-billed Hornbill (*Tockus pallidirostris*) Rejected (Fisher & Hunter, 2016)
+- #498 Usambiro Barbet (*Trachyphonus usambiro*) Lumped with 497. D'Arnaud's Barbet (*Trachyphonus darnaudii*)
+- #506 Kilimanjaro Honeyguide (*Indicator narokensis*) Lumped with 505. Pallid honeyguide (*Indicator meliphilus*)
+- #537 Spike-heeled Lark (*Chersomanes albofasciata*) Uncertain (Turner, 1985)
+- #664 Forest Robin (*Stiphrornis erythrothorax*) Rejected
+- #894 Ashy Starling (*Cosmopsarus unicolor*) Rejected (Fisher & Hunter, 2016)
+- #935 Blue-throated Brown Sunbird (*Nectarinia cyanolaema*) Rejected (Fisher & Hunter, 2016)
+- #1006 Chestnut-breasted Negrofinch (*Nigrita bicolor*) Rejected (Fisher & Hunter, 2016)
+- #1026 Cordon-bleu (*Uraeginthus angolensis*) Rejected (Fisher & Hunter, 2016)
+- #0a Shoebill (*Balaeniceps rex*), unnumbered atlas entry assigned a project code
 
 
 **Temporal coverage:** 1900-01-01 / 1984-12-31
@@ -103,40 +101,44 @@ Turner, D.A. 1985. On the claimed occurrence of the Spike-heeled Lark Chersomane
 
 ## Project files and workflow
 
-The book scans and existing labeling app remain in `pages_png/`, `extract/`, `templateCode/` and the project root, where the app expects them. The source atlas workbook, page index and grid are in `data/raw/`; the manually curated historical SEQ-to-Avibase mapping is in `data/curated/`. The SEQ column uses `0a` for Shoebill and `0b` for Taita Thrush; they were both 0 in the earlier workbook. Read SEQ as text. `data/intermediate/` holds generated grid and GBIF matching results. The labeling app expects its working `data_fix.mat` and `data_label*.mat` files directly in `data/`. The occurrence export is in `export/gbif/`.
+- [Atlas workbook](data/raw/A%20Bird%20Atlas%20of%20Kenya_v5.xlsx): the digitized source data, including the atlas names, grid squares and period codes. Earlier versions are available in Git history.
+- [Atlas taxonomy](data/curated/atlas_taxonomy.csv): the curated mapping from each atlas `SEQ` to an Avibase ID, name and supporting notes.
+- [Comparison CSV](export/comparison/atlas_records.csv): the atlas records joined to the Avibase mapping, ready for comparison work. See its [export notes](export/comparison/README.md).
+- [Occurrence CSV](export/gbif/occurrence.csv): the Darwin Core occurrence export for GBIF, derived from the atlas periods and taxonomy mapping.
+- `data/raw/taxonomy/` contains the supplied taxonomy reference workbooks; `data/intermediate/` contains generated working files. Book scans and the labeling app remain in their original locations.
 
-The numbered filenames identify the scripts; they are not a single pipeline that must be run from beginning to end. Run the commands below from the project root. MATLAB's `run` cannot execute a filename beginning with a number, so use `eval(fileread(...))`, or run sections interactively in the editor.
+### Comparison CSV
 
-### Current exports
+Each row in `atlas_records.csv` comes from the atlas workbook. It includes the original `scientific_name` and `common_name`, grid coordinates `sq_n` and `sq_l`, and the source codes in `pre_1970`, `period_1970_1984` and `post_1984`. The last three fields are separate source periods; select the periods and records appropriate for your analysis. The file also includes `avibase_id`, `avibase_name` and `avibase_notes`, joined by `seq`.
 
-The current inputs are the completed atlas workbook in `data/raw/` and the curated `data/curated/atlas_taxonomy.csv`. Read SEQ as text. Neither export requires rerunning the historical digitization or contacting GBIF.
+Read `seq` as text: `0a` identifies Shoebill and `0b` Taita Thrush, two unnumbered book entries that both used 0 in the earlier workbook. These are project identifiers, not book sequence numbers. The CSV retains all workbook rows; a row is not necessarily an occurrence in every period.
 
-For the GBIF occurrence CSV, first prepare the classification reference, then build the occurrence export:
+### Atlas taxonomy and Avibase
+
+The [curated taxonomy table](data/curated/atlas_taxonomy.csv) contains one row per atlas entry, preserving its original common and scientific names alongside its selected Avibase ID and name. The mapping started with historical scientific-name matches to AviList and used modern aliases, book scans, Avibase and Kenyan checklist evidence for difficult cases. Some entries use a more specific Kenyan taxon; others use a broader parent where a precise match is uncertain. The `match_basis`, `review_status`, `source` and `notes` fields document the basis and limitations. Name matches do not by themselves establish that historical and modern taxon concepts are identical; consult the notes before interpreting splits or combining records. See [taxonomy documentation](docs/taxonomy.md) and [qualified decisions](docs/taxonomy_decisions.md).
+
+### Regenerating exports
+
+The numbered MATLAB scripts are independent stages, not a pipeline that must always be run from the beginning. Run these commands from the project root. Because MATLAB `run` cannot execute filenames beginning with a number, use `eval(fileread(...))` or execute sections interactively.
+
+To regenerate the comparison CSV from the atlas workbook and curated taxonomy, run:
 
 ```matlab
-eval(fileread('scripts/04_taxonomy_reference.m'))  % Reference workbooks and Avibase IDs -> atlas_taxonomy_reference.csv
-eval(fileread('scripts/06_prepare_occurrence.m'))  % Atlas, curated taxonomy and reference -> occurrence CSV
+eval(fileread('scripts/07_export_comparison.m'))
 ```
 
-For the comparison CSV, run only:
+To regenerate the occurrence CSV, first build the classification reference from the supplied workbooks and then export the occurrences:
 
 ```matlab
-eval(fileread('scripts/07_export_comparison.m'))  % Atlas and Avibase IDs -> export/comparison/atlas_records.csv
+eval(fileread('scripts/04_taxonomy_reference.m'))
+eval(fileread('scripts/06_prepare_occurrence.m'))
 ```
 
-The comparison export retains all source rows and the three atlas periods; its `seq` field is text. See [comparison export notes](export/comparison/README.md).
-
-### Catalogue of Life matching
-
-Step 05 optionally queries GBIF’s Catalogue of Life matching API and saves proposals to `data/intermediate/atlas_col_name_matches.csv`. It does not modify the curated table or occurrence export. The Avibase and Catalogue of Life decisions are maintained together in `data/curated/atlas_taxonomy.csv`; see [taxonomic decisions](docs/taxonomy_decisions.md) for qualified matches and review `col_status` and `col_notes` before using them. The API call requires network access.
+Neither export requires rerunning the historical digitization or contacting GBIF. The occurrence export uses the selected Avibase/AviList scientific name where available and retains the atlas names; see [taxonomy documentation](docs/taxonomy.md) for the fields and qualifications. The files in this repository represent the current working export and may differ from the published GBIF dataset.
 
 ### Historical digitization and review
 
 `scripts/01_create_grid.m`, `02_read_atlas_maps.m` and `03_review_digitization.m` document the original grid preparation, map extraction and interactive labeling work. They are not required for the exports above. Step 03 combines interactive review with exporting completed grid records and references an earlier workbook and a saved labeling session that are not included; the completed workbook also involved manual curation. These scripts therefore do not currently reproduce the final workbook end to end.
-
-### GBIF publishing mapping
-
-Map the occurrence CSV's `scientificName`, `taxonID`, `vernacularName` and `identificationRemarks` to their Darwin Core fields. `scientificName` carries the selected Avibase/AviList name where available, `taxonID` carries the Avibase ID, and `vernacularName` carries the atlas common name. `taxonConceptID` contains the Catalogue of Life ID selected in the curated table where `col_publish` is true; match status and scope are documented in that table. For 38 atlas taxa that ID is a broad genus fallback; GBIF can interpret the record at genus level or flag a mismatch with the supplied scientific name. The original atlas scientific name is present in both `verbatimIdentification` and `identificationRemarks`. If the publishing tool supports `verbatimIdentification`, map it; if it does not, ensure `identificationRemarks` is mapped so the original name is retained. Check the generated archive or validator output to confirm the mappings before publishing.
 
 ## How to cite?
 

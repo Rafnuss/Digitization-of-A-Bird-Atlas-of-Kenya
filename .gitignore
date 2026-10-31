@@ -1,2 +1,5 @@
-
 A_bird_atlas_of_kenya.pdf
+.DS_Store
+data/intermediate/atlas_taxonomy_reference.csv
+data/intermediate/atlas_col_name_matches.csv
+data/intermediate/atlas_gbif_name_matches_*.csv
